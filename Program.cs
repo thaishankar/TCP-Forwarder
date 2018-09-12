@@ -11,7 +11,7 @@ namespace TCP_Forwarder
 {
     class Program
     {
-        private const int SERVER_PORT = 50001;
+        
         static void Main(string[] args)
         {
             
@@ -23,7 +23,7 @@ namespace TCP_Forwarder
 
         static void Server()
         {
-            Listener newListener = new Listener(SERVER_PORT);
+            Listener newListener = new Listener(Constants.DEFAULT_SERVER_PORT);
             newListener.Start();
             newListener.Accept();
             newListener.Stop();
@@ -33,7 +33,7 @@ namespace TCP_Forwarder
         {
             for ( int i = 0; i < 5; i++)
             {
-                Client newClient = new Client(SERVER_PORT);
+                Client newClient = new Client();
                 newClient.Send(String.Format("Hello from Client {0}", i));
                 Console.WriteLine("Client Received {0}", newClient.Receive());
                 newClient.Close();
